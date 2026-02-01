@@ -1,22 +1,23 @@
 ---
 import type { ShortcutSection } from '../data';
 import ShortcutSectionComp from './ShortcutSection.astro';
+import CategoryIcon from './CategoryIcon.astro';
 
 interface Props {
   id: string;
   title: string;
   description?: string;
-  icon?: string;
+  icon?: 'firefox' | 'vscode' | 'vim' | 'hyprland' | 'kitty' | 'zsh';
   sections: ShortcutSection[];
 }
 
-const { id, title, description, icon = '⌨', sections } = Astro.props;
+const { id, title, description, icon, sections } = Astro.props;
 ---
 
 <section class="scroll-mt-24" id={id}>
   <header class="mb-8">
-    <h2 class="flex items-center gap-2 text-2xl font-bold text-[var(--color-text)]">
-      <span aria-hidden="true">{icon}</span>
+    <h2 class="flex items-center gap-3 text-2xl font-bold text-[var(--color-text)]">
+      {icon && <CategoryIcon name={icon} />}
       {title}
     </h2>
     {description && (
