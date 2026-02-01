@@ -1,0 +1,19 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import Nav from './Nav.astro';
+---
+
+<header class="sticky top-0 z-50 w-full border-b border-[var(--color-border)] bg-[var(--color-bg-elevated)]/95 backdrop-blur supports-[backdrop-filter]:bg-[var(--color-bg-elevated)]/80">
+  <div class="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6">
+    <a href="/" class="flex items-center gap-2 font-semibold text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors">
+      <span class="text-xl">⌨</span>
+      <span>Atajos</span>
+    </a>
+
+    <nav class="flex items-center gap-2">
+      <Nav />
+      <ThemeToggle />
+      <Nav mobile />
+    </nav>
+  </div>
+</header>

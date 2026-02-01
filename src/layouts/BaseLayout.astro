@@ -1,0 +1,90 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Referencia rápida de atajos de teclado para Firefox, VSCode, Vim, Hyprland, Kitty y Zsh.' } = Astro.props;
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <script is:inline>
+      (function() {
+        const stored = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (stored === 'dark' || (!stored && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <a href="#main-content" class="absolute -top-full left-4 z-[100] rounded bg-[var(--color-accent)] px-4 py-2 text-white transition-all focus:top-4 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:ring-offset-2 focus:ring-offset-[var(--color-bg)]">
+      Saltar al contenido
+    </a>
+    <Header />
+    <main id="main-content" class="flex-1" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sectionIds = ['firefox', 'vscode', 'vim', 'hyprland', 'kitty', 'zsh'];
+      const sections = sectionIds
+        .map((id) => document.getElementById(id))
+        .filter(Boolean) as HTMLElement[];
+
+      if (sections.length === 0) return;
+
+      function setActiveSection(activeId: string | null) {
+        document.querySelectorAll('[data-nav-section]').forEach((el) => {
+          const link = el as HTMLAnchorElement;
+          const isActive = link.dataset.navSection === activeId;
+          link.classList.toggle('nav-active', isActive);
+          link.setAttribute('aria-current', isActive ? 'page' : '');
+        });
+      }
+
+      function updateActive() {
+        const scrollTop = window.scrollY + 140;
+        let current: HTMLElement | null = null;
+        for (const section of sections) {
+          const top = section.getBoundingClientRect().top + window.scrollY;
+          if (top <= scrollTop) current = section;
+        }
+        setActiveSection(current?.id ?? sections[0]?.id ?? null);
+      }
+
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            updateActive();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      updateActive();
+    });
+  </script>
+  </body>
+</html>

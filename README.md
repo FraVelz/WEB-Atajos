@@ -1,43 +1,95 @@
-# Astro Starter Kit: Minimal
+# Web Atajos
 
-```sh
-pnpm create astro@latest -- --template minimal
+Referencia rápida de atajos de teclado para Firefox, VSCode, Vim, Hyprland, Kitty y Zsh. Pensado para usuarios de Arch Linux con Hyprland.
+
+## Características
+
+- **Tema claro y oscuro** con toggle y preferencia del sistema
+- **Navegación con indicador** de sección activa según el scroll
+- **Diseño responsive** para escritorio y móvil (menú hamburguesa)
+- **Accesibilidad** con enlace "Saltar al contenido" y scroll suave
+- **Datos modulares** en archivos separados por categoría
+
+## Tecnologías
+
+- [Astro](https://astro.build) 5
+- [Tailwind CSS](https://tailwindcss.com) 4
+- [pnpm](https://pnpm.io)
+
+## Inicio rápido
+
+``` bash
+# Instalar dependencias
+pnpm install
+
+# Desarrollo (con recarga en vivo)
+pnpm dev
+
+# Build para producción
+pnpm build
+
+# Vista previa del build
+pnpm preview
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+El servidor de desarrollo suele estar en `http://localhost:4321`.
 
-## 🚀 Project Structure
+## Estructura del proyecto
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+``` text
+src/
+├── components/          # Componentes Astro
+│   ├── AsideNav.astro   # Navegación lateral (desktop)
+│   ├── CategoryBlock.astro
+│   ├── Footer.astro
+│   ├── Header.astro
+│   ├── Nav.astro        # Header + menú móvil
+│   ├── ShortcutSection.astro
+│   └── ThemeToggle.astro
+├── data/                # Atajos por categoría
+│   ├── types.ts
+│   ├── index.ts
+│   ├── firefox.ts
+│   ├── vscode.ts
+│   ├── vim.ts
+│   ├── hyprland.ts
+│   ├── kitty.ts
+│   └── zsh.ts
+├── layouts/
+│   └── BaseLayout.astro
+├── pages/
+│   └── index.astro
+└── styles/
+    └── global.css
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Añadir o modificar atajos
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Los atajos están en `src/data/`, uno por categoría. Ejemplo para añadir un atajo en Firefox:
 
-Any static assets, like images, can be placed in the `public/` directory.
+```ts
+// src/data/firefox.ts
+{
+  atajo: 'Ctrl + Shift + T',
+  accion: 'Reabrir pestaña cerrada',
+},
+```
 
-## 🧞 Commands
+Para nuevas categorías, crea un archivo en `data/`, exporta el array y regístralo en `data/index.ts` y en `navSections`.
 
-All commands are run from the root of the project, from a terminal:
+## Scripts disponibles
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+| Comando        | Acción                         |
+|----------------|--------------------------------|
+| `pnpm dev`     | Servidor de desarrollo         |
+| `pnpm build`   | Build estático en `./dist/`    |
+| `pnpm preview` | Vista previa del build         |
+| `pnpm astro`   | CLI de Astro                   |
 
-## 👀 Want to learn more?
+## Información
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+**Licencia:** MIT
+
+**Autor:** Fravelz
+
+Uso personal.

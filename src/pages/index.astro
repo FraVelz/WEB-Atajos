@@ -1,17 +1,78 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CategoryBlock from '../components/CategoryBlock.astro';
+import AsideNav from '../components/AsideNav.astro';
+import { firefox, vscode, vim, hyprland, kitty, zsh } from '../data';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Atajos de Teclado | Firefox, VSCode, Vim, Hyprland, Kitty, Zsh"
+  description="Referencia rápida de atajos de teclado para navegación, edición de código y control del sistema en Arch Linux."
+>
+  <div class="mx-auto flex max-w-6xl gap-12 px-4 py-10 sm:px-6 sm:py-14">
+  <AsideNav />
+  <div class="min-w-0 flex-1">
+    <!-- Hero -->
+    <header class="mb-16 text-center">
+      <h1 class="text-3xl font-bold tracking-tight text-[var(--color-text)] sm:text-4xl">
+        Atajos de Teclado
+      </h1>
+      <p class="mt-4 max-w-2xl mx-auto text-lg text-[var(--color-text-muted)]">
+        Referencia rápida para navegar sin ratón, editar código y controlar tu sistema.
+        Firefox · VSCode · Vim · Hyprland · Kitty · Zsh
+      </p>
+    </header>
+
+    <!-- Contenido principal -->
+    <div class="space-y-20">
+      <CategoryBlock
+        id="firefox"
+        title="Firefox"
+        description="Navegación y búsqueda rápida sin usar el mouse"
+        icon="🦊"
+        sections={firefox}
+      />
+
+      <CategoryBlock
+        id="vscode"
+        title="VSCode"
+        description="Abrir, manejar archivos y editar con productividad"
+        icon="📁"
+        sections={vscode}
+      />
+
+      <CategoryBlock
+        id="vim"
+        title="Vim"
+        description="Editar miles de líneas de código con eficiencia"
+        icon="V"
+        sections={vim}
+      />
+
+      <CategoryBlock
+        id="hyprland"
+        title="Hyprland (Arch)"
+        description="Workspaces, ventanas y control del compositor"
+        icon="◆"
+        sections={hyprland}
+      />
+
+      <CategoryBlock
+        id="kitty"
+        title="Kitty"
+        description="Terminal: pestañas y paneles"
+        icon="🐱"
+        sections={kitty}
+      />
+
+      <CategoryBlock
+        id="zsh"
+        title="Zsh / Bash"
+        description="Atajos en la línea de comandos"
+        icon="$"
+        sections={zsh}
+      />
+    </div>
+  </div>
+  </div>
+</BaseLayout>

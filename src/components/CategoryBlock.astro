@@ -1,0 +1,31 @@
+---
+import type { ShortcutSection } from '../data';
+import ShortcutSectionComp from './ShortcutSection.astro';
+
+interface Props {
+  id: string;
+  title: string;
+  description?: string;
+  icon?: string;
+  sections: ShortcutSection[];
+}
+
+const { id, title, description, icon = '⌨', sections } = Astro.props;
+---
+
+<section class="scroll-mt-24" id={id}>
+  <header class="mb-8">
+    <h2 class="flex items-center gap-2 text-2xl font-bold text-[var(--color-text)]">
+      <span aria-hidden="true">{icon}</span>
+      {title}
+    </h2>
+    {description && (
+      <p class="mt-2 text-[var(--color-text-muted)]">{description}</p>
+    )}
+  </header>
+  <div class="space-y-10">
+    {sections.map((s) => (
+      <ShortcutSectionComp section={s} />
+    ))}
+  </div>
+</section>
