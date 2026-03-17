@@ -4,7 +4,8 @@ interface Props {
 }
 
 const { mobile = false } = Astro.props;
-import { navSections } from '../data';
+
+import { navSections } from '@/data';
 ---
 
 {mobile ? (
@@ -15,7 +16,8 @@ import { navSections } from '../data';
       aria-expanded="false"
       aria-controls="nav-mobile-menu"
       aria-label="Abrir menú de navegación"
-      class="p-2 rounded-lg text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-code-bg)] lg:hidden"
+      class="p-2 rounded-lg text-(--color-text-muted) hover:text-(--color-text)
+        hover:bg-(--color-code-bg) lg:hidden"
     >
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -23,14 +25,16 @@ import { navSections } from '../data';
     </button>
     <div
       id="nav-mobile-menu"
-      class="absolute right-0 top-full mt-1 hidden flex-col gap-1 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-elevated)] p-2 shadow-xl z-50 xl:hidden"
+      class="absolute right-0 top-full mt-1 hidden flex-col gap-1 rounded-lg border
+        border-(--color-border) bg-(--color-bg-elevated) p-2 shadow-xl z-50 xl:hidden"
       aria-hidden="true"
     >
       {navSections.map((s) => (
         <a
           href={s.href}
           data-nav-section={s.id}
-          class="nav-link block rounded-md px-3 py-2 text-sm text-[var(--color-text-muted)] hover:bg-[var(--color-code-bg)] hover:text-[var(--color-accent)] transition-colors nav-mobile-link"
+          class="nav-link block rounded-md px-3 py-2 text-sm text-(--color-text-muted)
+            hover:bg-(--color-code-bg) hover:text-(--color-accent) transition-colors nav-mobile-link"
         >
           {s.label}
         </a>
@@ -43,7 +47,8 @@ import { navSections } from '../data';
       <a
         href={s.href}
         data-nav-section={s.id}
-        class="nav-link rounded-md px-3 py-2 text-sm font-medium text-[var(--color-text-muted)] hover:bg-[var(--color-code-bg)] hover:text-[var(--color-accent)] transition-colors"
+        class="nav-link rounded-md px-3 py-2 text-sm font-medium text-(--color-text-muted)
+          hover:bg-(--color-code-bg) hover:text-(--color-accent) transition-colors"
       >
         {s.label}
       </a>
@@ -55,14 +60,17 @@ import { navSections } from '../data';
   <script>
     const toggle = document.getElementById('nav-mobile-toggle');
     const menu = document.getElementById('nav-mobile-menu');
+    
     if (toggle && menu) {
       toggle.addEventListener('click', () => {
         const isOpen = menu.classList.contains('flex');
+
         menu.classList.toggle('hidden', isOpen);
         menu.classList.toggle('flex', !isOpen);
         menu.setAttribute('aria-hidden', String(isOpen));
         toggle.setAttribute('aria-expanded', String(!isOpen));
       });
+
       document.querySelectorAll('.nav-mobile-link').forEach((link) => {
         link.addEventListener('click', () => {
           menu.classList.add('hidden');

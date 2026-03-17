@@ -1,5 +1,5 @@
 ---
-import type { ShortcutSection as SectionType } from '../data';
+import type { ShortcutSection as SectionType } from '@/data';
 
 interface Props {
   section: SectionType;
@@ -12,12 +12,13 @@ const cols = section.columns ?? 2;
 
 <section class="space-y-3" id={section.id}>
   <div>
-    <h3 class="text-lg font-semibold text-[var(--color-text)]">{section.title}</h3>
+    <h3 class="text-lg font-semibold text-(--color-text)">{section.title}</h3>
     {section.description && (
-      <p class="mt-1 text-sm text-[var(--color-text-muted)]">{section.description}</p>
+      <p class="mt-1 text-sm text-(--color-text-muted)">{section.description}</p>
     )}
   </div>
-  <div class="overflow-x-auto rounded-lg border border-[var(--color-border)]">
+
+  <div class="overflow-x-auto rounded-lg border border-(--color-border)">
     <table class="shortcut-table">
       <thead>
         <tr>
@@ -26,6 +27,7 @@ const cols = section.columns ?? 2;
           {cols === 3 && <th>Descripción</th>}
         </tr>
       </thead>
+
       <tbody>
         {section.rows.map((row) => (
           <tr>
@@ -33,7 +35,7 @@ const cols = section.columns ?? 2;
               <code class="shortcut-kbd">{row.atajo}</code>
             </td>
             <td>{row.accion}</td>
-            {cols === 3 && <td class="text-[var(--color-text-muted)] text-sm">{row.descripcion ?? ''}</td>}
+            {cols === 3 && <td class="text-(--color-text-muted) text-sm">{row.descripcion ?? ''}</td>}
           </tr>
         ))}
       </tbody>

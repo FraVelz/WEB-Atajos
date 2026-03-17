@@ -1,30 +1,30 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import CategoryBlock from '../components/CategoryBlock.astro';
-import AsideNav from '../components/AsideNav.astro';
-import { firefox, vscode, vim, hyprland, kitty, zsh } from '../data';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CategoryBlock from '@/components/CategoryBlock.astro';
+import AsideNav from '@/components/AsideNav.astro';
+
+import { firefox, vscode, vim, hyprland, kitty, zsh } from '@/data';
 ---
 
 <BaseLayout
   title="Atajos de Teclado | Firefox, VSCode, Vim, Hyprland, Kitty, Zsh"
   description="Referencia rápida de atajos de teclado para navegación, edición de código y control del sistema en Arch Linux."
 >
-  <div class="mx-auto flex max-w-6xl gap-12 px-4 py-10 sm:px-6 sm:py-14">
   <AsideNav />
-  <div class="min-w-0 flex-1">
-    <!-- Hero -->
-    <header class="mb-16 text-center">
-      <h1 class="text-3xl font-bold tracking-tight text-[var(--color-text)] sm:text-4xl">
+
+  <!-- Contenido principal -->
+  <main class="min-w-0 flex-1">
+    <div class="mb-16 text-center">
+      <h1 class="text-3xl font-bold tracking-tight text-(--color-text) sm:text-4xl">
         Atajos de Teclado
       </h1>
-      <p class="mt-4 max-w-2xl mx-auto text-lg text-[var(--color-text-muted)]">
+      <p class="mt-4 max-w-2xl mx-auto text-lg text-(--color-text-muted)">
         Referencia rápida para navegar sin ratón, editar código y controlar tu sistema.
         Firefox · VSCode · Vim · Hyprland · Kitty · Zsh
       </p>
-    </header>
+    </div>
 
-    <!-- Contenido principal -->
-    <main class="space-y-20">
+    <div class="space-y-20">
       <CategoryBlock
         id="firefox"
         title="Firefox"
@@ -72,7 +72,6 @@ import { firefox, vscode, vim, hyprland, kitty, zsh } from '../data';
         icon="zsh"
         sections={zsh}
       />
-    </main>
-  </div>
-  </div>
+    </div>
+  </main>
 </BaseLayout>

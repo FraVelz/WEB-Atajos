@@ -4,6 +4,7 @@
  */
 
 export type { ShortcutRow, ShortcutSection } from './types';
+
 export { firefox } from './firefox';
 export { vscode } from './vscode';
 export { vim } from './vim';

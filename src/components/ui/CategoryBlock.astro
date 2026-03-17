@@ -1,5 +1,5 @@
 ---
-import type { ShortcutSection } from '../data';
+import type { ShortcutSection } from '@/data';
 import ShortcutSectionComp from './ShortcutSection.astro';
 import CategoryIcon from './CategoryIcon.astro';
 
@@ -16,14 +16,16 @@ const { id, title, description, icon, sections } = Astro.props;
 
 <section class="scroll-mt-24" id={id}>
   <header class="mb-8">
-    <h2 class="flex items-center gap-3 text-2xl font-bold text-[var(--color-text)]">
+    <h2 class="flex items-center gap-3 text-2xl font-bold text-(--color-text)">
       {icon && <CategoryIcon name={icon} />}
       {title}
     </h2>
+
     {description && (
-      <p class="mt-2 text-[var(--color-text-muted)]">{description}</p>
+      <p class="mt-2 text-(--color-text-muted)">{description}</p>
     )}
   </header>
+
   <div class="space-y-10">
     {sections.map((s) => (
       <ShortcutSectionComp section={s} />

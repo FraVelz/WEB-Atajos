@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+/* Fuentes Locales */
+@font-face {
+  font-family: "Vercel Font";
+  src: url("fonts/GeistMono-Regular.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+}
+
 /* Variables de tema */
 :root {
   --color-bg: #faf9f7;
@@ -10,8 +18,8 @@
   --color-accent-hover: #1d4ed8;
   --color-border: #e2e8f0;
   --color-code-bg: #f1f5f9;
-  --font-sans: "DM Sans", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+  --font-vercel: "Vercel Font", system-ui, sans-serif;
 }
 
 .dark {
@@ -25,16 +33,13 @@
   --color-code-bg: #27272a;
 }
 
-html {
-  scroll-behavior: smooth;
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
 }
 
-body {
-  font-family: var(--font-sans);
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  min-height: 100vh;
-  transition: background-color 0.2s, color 0.2s;
+html {
+  scroll-behavior: smooth;
 }
 
 /* Estilos para tablas de atajos */
@@ -64,7 +69,6 @@ body {
 }
 
 .shortcut-kbd {
-  font-family: var(--font-mono);
   font-size: 0.8125rem;
   padding: 0.25rem 0.5rem;
   background: var(--color-code-bg);

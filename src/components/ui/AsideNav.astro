@@ -1,0 +1,25 @@
+---
+import { navSections } from '@/data';
+---
+
+<aside class="hidden xl:block w-48 shrink-0" aria-label="Navegación por secciones">
+  <nav class="sticky top-24 space-y-1">
+    <p class="mb-3 text-xs font-semibold uppercase tracking-wider text-(--color-text-muted)">
+      Secciones
+    </p>
+    {navSections.map((s) => (
+      <a
+        href={s.href}
+        data-nav-section={s.id}
+        class="
+          nav-link
+          block rounded-md px-2 py-1.5 text-sm
+          text-(--color-text-muted) hover:bg-(--color-code-bg) hover:text-(--color-accent)
+          transition-colors border-l-2 border-transparent
+        "
+      >
+        {s.label}
+      </a>
+    ))}
+  </nav>
+</aside>
